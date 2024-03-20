@@ -1,0 +1,128 @@
+<div th:insert="header.html">...</div>
+<div th:insert="sidebar.html">...</div>
+
+<main class="main" id="main">
+    <section class="section">
+        <div class="row" style="margin-top: 100px">
+            <div class="col-md-10 offset-1">
+                <h1 th:if="${perId ==null}" class="card-title text-center mt-2">Percel Details</h1>
+                <h1 th:if="${perId !=null}" class="card-title text-center mt-2">Percel update</h1>
+                <div class="card"   style="background-color: #edeff3; box-shadow: 2px 10px 20px 10px  #fafafa">
+                    <div class="card-body pt-5">
+                        <!-- General Form Elements -->
+                        <form  th:action="@{${recpId == null?'/add_parcel': '/update_parcel'}}" th:object="${parcelDetails}" method="post">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{senderId}">
+                            <input type="hidden" th:field="*{recipientId}">
+
+
+                            <input type="hidden" name="perId" th:value="${perId}">
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">What do you want to send?</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example"
+                                            th:field="*{selectProductType}">
+                                        <option th:value="'Document'" th:text="Document"></option>
+                                        <option th:value="'Parcel'" th:text="Parcel"></option>
+                                        <option th:value="'Electronics'" th:text="Electronics"></option>
+                                        <option th:value="'Foods'" th:text="Foods"></option>
+                                        <option th:value="'Fragile_goods'" th:text="'Fragile goods'"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Package weight (KG)</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example"
+                                            th:field="*{packageWeight}">
+                                        <option th:value="'SelectWeight'" th:text="'Select Weight'"></option>
+                                        <option th:value="'Up_to_1kg'" th:text="'Up to 1kg'"></option>
+                                        <option th:value="'1-2kg'" th:text="1-2kg"></option>
+                                        <option th:value="'2-3kg'" th:text="2-3kg"></option>
+                                        <option th:value="'3-4kg'" th:text="3-4kg"></option>
+                                        <option th:value="'4-5kg'" th:text="4-5kg"></option>
+                                        <option th:value="'5-6kg'" th:text="5-6kg"></option>
+                                        <option th:value="'6-7kg'" th:text="6-7kg"></option>
+                                        <option th:value="'7-8kg'" th:text="7-8kg"></option>
+                                        <option th:value="'8-9kg'" th:text="8-9kg"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">What does this parcel contain?</label>
+                                <div class="col-sm-10">
+                                    <input  type="text" class="form-control" th:field="*{whatDoesThisParcelContain}" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Number of Item</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Number of Item" type="text" class="form-control" th:field="*{numberOfItem}" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Payment</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example"
+                                            th:field="*{payment}">
+                                        <option th:value="'200'" th:text="'200'"></option>
+                                        <option th:value="'300'" th:text="'300'"></option>
+                                        <option th:value="'400'" th:text="'400'"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Parcel Traking Number</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Number of Item" type="text" class="form-control" th:field="*{parcelTrakingNumber}" />
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="row mb-3">
+
+                                <div class="col-md-12 text-center">
+                                    <button th:if="${perId !=null}" type="submit" class="btn btn-primary">Update</button>
+                                    <button th:if="${perId ==null}" type="submit" class="btn btn-primary">Submit</button>
+
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<div th:insert="footer.html">...</div>

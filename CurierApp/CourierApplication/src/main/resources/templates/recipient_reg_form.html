@@ -1,0 +1,137 @@
+<div th:insert="header.html">...</div>
+<div th:insert="sidebar.html">...</div>
+
+<main class="main" id="main">
+    <section class="section" >
+        <div class="row" style="margin-top: 100px">
+            <div class="col-md-10 offset-1">
+                <h1 th:if="${recpId==null}" class="card-title text-center mt-2">Recipient Details</h1>
+                <h1 th:if="${recpId!=null}" class="card-title text-center mt-2">Recipient Update</h1>
+                <div class="card " style="background-color: #edeff3; box-shadow: 2px 10px 20px 10px  #fafafa">
+                    <div class="card-body pt-5">
+                        <!-- General Form Elements -->
+                        <form  th:action="@{${recpId == null?'/add_recipient': '/update_recipient'}}" th:object="${recipientDetails}" method="post">
+                            <input type="hidden" th:field="*{id}">
+                            <input type="hidden" th:field="*{senderId}">
+                            <input type="hidden" name="perId" th:value="${perId}">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Recipient Name</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Enter sender name" type="text" class="form-control" th:field="*{recipientName}" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Recipient Mobile No</label>
+                                <div class="col-sm-10">
+                                    <input placeholder="Enter sender mobile number" type="text" class="form-control" th:field="*{recipientMobileNo}" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">District</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example"
+                                            th:field="*{district}">
+                                        <option th:value="'Dhaka'" th:text="Dhaka"></option>
+                                        <option th:value="'Pabna'" th:text="pabna"></option>
+                                        <option th:value="'Bogra'" th:text="Bogra"></option>
+                                        <option th:value="'Gazipur'" th:text="Gazipur"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Nearest Area</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example"
+                                            th:field="*{nearestArea}">
+                                        <option th:value="'12Tola'" th:text="'12 Tola'"></option>
+                                        <option th:value="'AamBagan'" th:text="'Aam bagan'"></option>
+                                        <option th:value="'PabnaSador'" th:text="'Pabna Sador'"></option>
+                                        <option th:value="'Abdullahpur'" th:text="'Abdullahpur'"></option>
+                                        <option th:value="'Adabor'" th:text="'Adabor'"></option>
+                                        <option th:value="'Aamtili'" th:text="'Aamtili'"></option>
+                                        <option th:value="'Chondona'" th:text="'Chondona'"></option>
+                                        <option th:value="'Hazibag'" th:text="'Hazibag'"></option>
+                                        <option th:value="'Kunia'" th:text="'Kunia'"></option>
+                                        <option th:value="'Gabtoli'" th:text="'Gabtoli'"></option>
+                                        <option th:value="'Nandigram'" th:text="'Nandigram'"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Recipient Address</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="Enter sender address" rows="3" class="form-control" th:field="*{recipientAddress}" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Instruction</label>
+                                <div class="col-sm-10">
+                                    <textarea placeholder="Enter sender address" rows="3" class="form-control" th:field="*{instruction}" />
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Send Pick Notifaction</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" th:field="*{sendPickNotifaction}"
+                                               value="Home"  name="address"/>
+                                        <label class="form-check-label" >
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" th:field="*{sendPickNotifaction}"
+                                               value="Office" name="address"   />
+                                        <label class="form-check-label" >
+                                            No
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row mb-3">
+
+                                <div class="col-md-12 text-center">
+                                    <button th:if="${recpId!=null}" type="submit" class="btn btn-primary">Update</button>
+                                    <button th:if="${recpId==null}" type="submit" class="btn btn-primary">Continue</button>
+
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<div th:insert="footer.html">...</div>
